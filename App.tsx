@@ -1,9 +1,8 @@
 import React, { useState } from "react";
+import { Button } from "./components/Button";
 import { StatusBar } from "expo-status-bar";
 import {
-  StyleSheet,
   Text,
-  View,
   ScrollView,
   SafeAreaView,
   TouchableOpacity,
@@ -18,46 +17,14 @@ import {
   CardContent,
   CardFooter,
 } from "./components/Card";
-import { Button } from "./components/Button";
+
+import { cards } from "@/data/cards";
 
 export default function App() {
   const [mainState, setMainState] = useState<"read" | "write" | "update">(
     "read"
   );
   const [editNoteId, setEditNoteId] = useState<number | undefined>(undefined);
-
-  const cards = [
-    {
-      title: "Design System",
-      description: "Create a design system for your app",
-      content: "Sleek, easy to use components to build your next app faster.",
-      footer: "Inspired by shadcn/ui",
-    },
-    {
-      title: "Design UX/UI",
-      description: "Create a design for the app",
-      content: "Sleek, easy to use components to build your next app faster.",
-      footer: "Inspired by shadcn/ui",
-    },
-    {
-      title: "Accelerate UI",
-      description: "Enter a new development experience",
-      content: "Sleek, easy to use components to build your next app faster.",
-      footer: "Inspired by shadcn/ui",
-    },
-    {
-      title: "Accelerate UI",
-      description: "Enter a new development experience",
-      content: "Sleek, easy to use components to build your next app faster.",
-      footer: "Inspired by shadcn/ui",
-    },
-    {
-      title: "Accelerate UI",
-      description: "Enter a new development experience",
-      content: "Sleek, easy to use components to build your next app faster.",
-      footer: "Inspired by shadcn/ui",
-    },
-  ];
 
   {
     return mainState === "read" ? (
