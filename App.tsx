@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import Update from "@/components/Update/Update.component";
 import Write from "@/components/Write/Write.component";
 import { NotesProvider } from "@/contexts/NotesContext";
