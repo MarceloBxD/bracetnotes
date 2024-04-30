@@ -32,7 +32,7 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
-            -Dsonar.projectKey=bracet-notes-pipeline
+            -Dsonar.projectKey=bracet-notes-pipeline_bracet-notes-pipeline
             -Dsonar.organization=bracet-notes-pipeline
             -Dsonar.host.url=https://sonarcloud.io
         env:
