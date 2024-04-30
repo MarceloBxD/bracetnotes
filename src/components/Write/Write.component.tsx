@@ -1,4 +1,4 @@
-import { WRITE_DATA } from "@/data/write-data";
+import { useNotes } from "@/contexts/NotesContext";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
@@ -16,18 +16,20 @@ type WriteProps = {
 };
 
 const Write: React.FC<WriteProps> = ({ setMainState }) => {
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
   const [content, setContent] = useState<string>("");
+  const { allNotes } = useNotes();
 
   const handleCreateTask = () => {
-    const newTask = {
-      title,
-      description,
-      content,
-      footer: "Criado em: " + new Date().toLocaleString(),
+    const newNote = {
+      id: allNotes.length + 1,
+      title: "Title",
+      description: "Description",
+      content: content,
+      footer: "Footer",
     };
 
+    console.log(newNote);
+    allNotes.push(newNote);
     setMainState("read");
   };
 
@@ -40,29 +42,15 @@ const Write: React.FC<WriteProps> = ({ setMainState }) => {
         <Text className="text-white text-lg">X</Text>
       </TouchableOpacity>
       <View className="p-2 mt-5">
-        {WRITE_DATA.map((item, idx) => (
-          <View key={idx} className="mt-5">
-            <Text className="text-lg">{item.title}</Text>
-            <TextInput
-              value={
-                item.title === "Título"
-                  ? title
-                  : item.title === "Descrição"
-                  ? description
-                  : content
-              }
-              onChangeText={(text) =>
-                item.title === "Título"
-                  ? setTitle(text)
-                  : item.title === "Descrição"
-                  ? setDescription(text)
-                  : setContent(text)
-              }
-              placeholder={item.placeholder}
-              className="border border-gray-400 p-2 mt-2"
-            />
-          </View>
-        ))}
+        <View className="mt-5">
+          <Text className="text-lg">Conteúdo</Text>
+          <TextInput
+            multiline={true}
+            value={content}
+            onChangeText={(text) => setContent(text)}
+            className="border border-gray-400 p-2 mt-2"
+          />
+        </View>
 
         <TouchableOpacity
           onPress={() => {

@@ -1,34 +1,13 @@
-import { NotesProps } from "@/types/card-type";
+import { NoteProps } from "@/types/notes";
 
-export const notes: NotesProps[] = [
+export const notes: NoteProps[] = [
   {
-    title: "Design System",
-    description: "Create a design system for your app",
-    content: "Sleek, easy to use components to build your next app faster.",
-    footer: "Inspired by shadcn/ui",
+    content: "Conteúdo 1",
   },
   {
-    title: "Design UX/UI",
-    description: "Create a design for the app",
-    content: "Sleek, easy to use components to build your next app faster.",
-    footer: "Inspired by shadcn/ui",
+    content: "Conteúdo 2",
   },
   {
-    title: "Accelerate UI",
-    description: "Enter a new development experience",
-    content: "Sleek, easy to use components to build your next app faster.",
-    footer: "Inspired by shadcn/ui",
-  },
-  {
-    title: "Accelerate UI",
-    description: "Enter a new development experience",
-    content: "Sleek, easy to use components to build your next app faster.",
-    footer: "Inspired by shadcn/ui",
-  },
-  {
-    title: "Accelerate UI",
-    description: "Enter a new development experience",
-    content: "Sleek, easy to use components to build your next app faster.",
-    footer: "Inspired by shadcn/ui",
+    content: "Conteúdo 3",
   },
 ];
