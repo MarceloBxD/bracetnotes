@@ -1,4 +1,5 @@
 import { useNotes } from "@/contexts/NotesContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
@@ -20,17 +21,18 @@ const Write: React.FC<WriteProps> = ({ setMainState }) => {
   const { allNotes } = useNotes();
 
   const handleCreateTask = () => {
-    const newNote = {
-      id: allNotes.length + 1,
-      title: "Title",
-      description: "Description",
-      content: content,
-      footer: "Footer",
-    };
-
-    console.log(newNote);
-    allNotes.push(newNote);
-    setMainState("read");
+    try {
+      const newNote = {
+        id: allNotes.length + 1,
+        content: content,
+      };
+      console.log(newNote);
+      AsyncStorage.setItem("notes", JSON.stringify([...allNotes, newNote]));
+      allNotes.push(newNote);
+      setMainState("read");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

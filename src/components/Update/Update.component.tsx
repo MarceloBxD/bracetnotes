@@ -1,8 +1,9 @@
 import { SafeAreaView, TouchableOpacity, Text, TextInput } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
-import { notes } from "@/data/notes";
 import { useState } from "react";
+import { useNotes } from "@/contexts/NotesContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type UpdateProps = {
   setMainState: React.Dispatch<
@@ -12,12 +13,25 @@ type UpdateProps = {
 };
 
 const Update: React.FC<UpdateProps> = ({ setMainState, editNoteId }) => {
+  const { allNotes, setAllNotes } = useNotes();
   const [content, setContent] = useState<string>(
-    editNoteId !== undefined ? notes[editNoteId].content : ""
+    editNoteId !== undefined ? allNotes[editNoteId].content : ""
   );
 
-  const updateNote = () => {
-    notes[editNoteId as number].content = content;
+  const deleteNote = async () => {
+    const newNotes = allNotes.filter((_, idx) => idx !== editNoteId);
+
+    setAllNotes(newNotes);
+    await AsyncStorage.setItem("notes", JSON.stringify(newNotes));
+  };
+
+  const updateNote = async () => {
+    const newNotes = allNotes.map((note, idx) =>
+      idx === editNoteId ? { ...note, content: content } : note
+    );
+
+    setAllNotes(newNotes);
+    await AsyncStorage.setItem("notes", JSON.stringify(newNotes));
   };
 
   return (
@@ -30,11 +44,13 @@ const Update: React.FC<UpdateProps> = ({ setMainState, editNoteId }) => {
         <Text className="text-white text-lg">X</Text>
       </TouchableOpacity>
       <TextInput
-        placeholder="Title"
+        placeholder="Texto da Nota"
+        autoFocus
         value={content}
         onChangeText={(t) => setContent(t)}
         className="border border-gray-400 p-2 mt-5"
       />
+
       <TouchableOpacity
         onPress={() => {
           setMainState("read");
@@ -43,6 +59,15 @@ const Update: React.FC<UpdateProps> = ({ setMainState, editNoteId }) => {
         className="bg-[#0694a2] p-2 mt-5 rounded-md"
       >
         <Text className="text-white text-center">Atualizar</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          setMainState("read");
+          deleteNote();
+        }}
+        className="bg-[#0694a2] p-2 mt-5 rounded-md"
+      >
+        <Text className="text-white text-center">Deletar Nota</Text>
       </TouchableOpacity>
       <StatusBar style="dark" />
     </SafeAreaView>
