@@ -1,6 +1,6 @@
-import { Text, View } from 'react-native';
+import { Text, View } from "react-native";
 
-import { cn } from '../lib/utils';
+import { cn } from "../libs/utils/index";
 
 function Card({
   className,
@@ -8,7 +8,7 @@ function Card({
 }: React.ComponentPropsWithoutRef<typeof View>) {
   return (
     <View
-      className={cn('rounded-xl border border-border', className)}
+      className={cn("rounded-xl border border-border", className)}
       {...props}
     />
   );
@@ -18,7 +18,7 @@ function CardHeader({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<typeof View>) {
-  return <View className={cn('p-4', className)} {...props} />;
+  return <View className={cn("p-4", className)} {...props} />;
 }
 
 function CardTitle({
@@ -28,7 +28,7 @@ function CardTitle({
   return (
     <Text
       className={cn(
-        'text-2xl font-semibold tracking-tight text-primary',
+        "text-2xl font-semibold tracking-tight text-primary",
         className
       )}
       {...props}
@@ -42,7 +42,7 @@ function CardDescription({
 }: React.ComponentPropsWithoutRef<typeof View>) {
   return (
     <Text
-      className={cn('text-sm text-muted-foreground', className)}
+      className={cn("text-sm text-muted-foreground", className)}
       {...props}
     />
   );
@@ -52,7 +52,7 @@ function CardContent({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<typeof View>) {
-  return <View className={cn('p-4 pt-0', className)} {...props} />;
+  return <View className={cn("p-4 pt-0", className)} {...props} />;
 }
 
 // TODO: style
@@ -62,7 +62,7 @@ function CardFooter({
 }: React.ComponentPropsWithoutRef<typeof View>) {
   return (
     <View
-      className={cn(className, 'flex flex-row items-center p-4 pt-0')}
+      className={cn(className, "flex flex-row items-center p-4 pt-0")}
       {...props}
     />
   );

@@ -1,7 +1,7 @@
-import { cloneElement, createContext, useContext, useState } from 'react';
-import { Modal, TouchableOpacity, View } from 'react-native';
+import { cloneElement, createContext, useContext, useState } from "react";
+import { Modal, TouchableOpacity, View } from "react-native";
 
-import { cn } from '../lib/utils';
+import { cn } from "../libs/utils/index";
 
 interface DialogContextType {
   open: boolean;
@@ -49,7 +49,7 @@ function DialogContent({
         <View className="flex flex-1 justify-center items-center bg-black/75">
           <TouchableOpacity
             className={cn(
-              'border border-border bg-background rounded-lg p-6 shadow-lg',
+              "border border-border bg-background rounded-lg p-6 shadow-lg",
               className
             )}
             activeOpacity={1}
@@ -65,7 +65,7 @@ function DialogContent({
 const useDialog = () => {
   const context = useContext(DialogContext);
   if (!context) {
-    throw new Error('useDialog must be used within a DialogProvider');
+    throw new Error("useDialog must be used within a DialogProvider");
   }
   return context;
 };
