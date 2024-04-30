@@ -30,6 +30,12 @@ jobs:
     steps:
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.projectKey=bracet-notes-pipeline
+            -Dsonar.organization=bracet-notes-pipeline
+            -Dsonar.sources=src
+            -Dsonar.host.url=https://sonarcloud.io
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
