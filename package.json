@@ -10,7 +10,7 @@
     "ts:check": "tsc"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.23.1",
+    "@react-native-async-storage/async-storage": "1.21.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "expo": "~50.0.17",
@@ -19,6 +19,7 @@
     "react": "18.2.0",
     "react-native": "0.73.6",
     "react-native-reanimated": "3.6.2",
+    "react-native-web": "^0.19.11",
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
